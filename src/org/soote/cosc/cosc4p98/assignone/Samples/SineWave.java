@@ -13,25 +13,17 @@ import java.util.ArrayList;
  * @author soote
  */
 public class SineWave extends Wave{
-    private static final String TYPE = "Sine";
+    private static final int AMPLITUDE = 15000;
 
-    public SineWave(int sc, int bps, int c, int sr, boolean n) {
-        super(sc,bps,c,sr,n);
+    public SineWave(int sc, int bps, int c, int sr, int f, String n) {
+        super(sc,bps,c,sr,f,n);
     }
     
-    public int[] synthesize() {
-        int[] l = new int[this.getSampleCount()];
-        int hertz;
-        float time = 0;
+    public void synthesize() {
+        int sample;
         for (int i = 0; i < this.getSampleCount(); i++) {
-            hertz = this.getSampleCount() / this.getSampleRate();
-            l[i] =(int) ( 10000*Math.sin((hertz*2)*Math.PI*time));
-            time+=0.002;
+            sample =  (int) (AMPLITUDE*Math.sin(2 * Math.PI * this.getFrequency()/this.getSampleRate() * i));
+            this.addSample(sample +"\t" + sample);
         }
-        return l;
-    }
-    
-    public String getType() {
-        return TYPE;
     }
 }

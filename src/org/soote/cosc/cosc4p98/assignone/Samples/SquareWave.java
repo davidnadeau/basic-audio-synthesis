@@ -6,22 +6,22 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author soote
  */
 public class SquareWave extends Wave{
-    private static final String TYPE = "Square";
-
-    public SquareWave(int sc, int bps, int c, int sr, boolean n) {
-        super(sc,bps,c,sr,n);
+    public SquareWave(int sc, int bps, int c, int sr, int f, String n) {
+        super(sc,bps,c,sr,f,n);
     }
     
-    public int[] synthesize() {
-        return new int[10];
-    }
-    
-    public String getType() {
-        return TYPE;
+    public void synthesize() {
+        int sample;
+        for (int i = 1; i <= this.getSampleCount(); i++) {
+            sample =  (Math.sin(i) > 0) ?1:0;
+            this.addSample(sample +"\t" + sample);
+        }
     }
 }

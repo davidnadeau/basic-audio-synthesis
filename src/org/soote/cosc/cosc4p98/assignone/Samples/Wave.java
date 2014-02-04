@@ -6,6 +6,8 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author soote
@@ -15,24 +17,43 @@ public abstract class Wave {
     private int sampleCount,
                 bitsPerSample,
                 channels,
-                sampleRate;
-    
-    private boolean normalized;
+                sampleRate,
+                frequency;
+    private ArrayList<String> data;
+    protected String name;
 
-    public Wave(int sc, int bps, int c, int sr, boolean n) {
+    public Wave(int sc, int bps, int c, int sr, int f, String n) {
+        data = new ArrayList();
         this.sampleCount = sc;
         this.bitsPerSample = bps;
         this.channels = c;
         this.sampleRate = sr;
-        this.normalized = n;
+        this.frequency = f;
+        this.frequency = f;
+        this.name = n;
+        this.addHeaders();
     }
-    
-    public int[] synthesize() {return new int[0];};
-    public String getType() { return "defualt"; };
+    private void addHeaders() {
+        String[] headers = {
+            "SAMPLES:\t"+this.sampleCount,
+            "BITSPERSAMPLE:\t"+this.bitsPerSample,
+            "CHANNELS:\t"+this.channels,
+            "SAMPLERATE:\t"+this.sampleRate,
+            "NORMALIZED:\tFALSE"
+        };
+        for (String h : headers) data.add(h);
+        
+    }
+    public void synthesize() {}
+    public String getType() { return "defualt"; }
+    public void addSample(String s) { this.data.add(s); }
     
     public int getSampleCount() { return sampleCount; }
     public int getBitsPerSample() { return bitsPerSample; } 
-    public int getChannels() { return channels; } 
+    public int getNumChannels() { return channels; } 
     public int getSampleRate() { return sampleRate; } 
-    public boolean isNormalized() { return normalized; } 
+    public int getFrequency() { return frequency; } 
+    public ArrayList<String> getSamples() { return data; } 
+    public String getName() { return name; } 
+    public ArrayList<String> getData() { return data; } 
 }
