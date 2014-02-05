@@ -29,7 +29,7 @@ public class DynamicWave extends Wave{
     public void synthesize() {
         String row;
         for (int i = 0; i <  super.getSampleCount(); i++) {
-            row = this.samples.get((int)(this.phase+i)%this.samples.size());
+            row = this.samples.get((int)(this.phase+i) % this.samples.size());
             super.addSample(row);
         }
     }
@@ -43,7 +43,7 @@ public class DynamicWave extends Wave{
             index = 0;
             al = w.getData();
             for (String s : al) {
-                if (index>22050) break;
+                if (index>22049) break;
                 l.add(s);
                 index++;
             }

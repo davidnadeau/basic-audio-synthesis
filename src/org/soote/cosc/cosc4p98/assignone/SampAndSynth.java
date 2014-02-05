@@ -2,6 +2,7 @@ package org.soote.cosc.cosc4p98.assignone;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.IO.DataToText;
 import org.soote.cosc.cosc4p98.assignone.IO.TextToData;
@@ -155,20 +156,20 @@ public class SampAndSynth {
            w.synthesize();
            w.stripHeader();
        }
-       //grab the first 24 samples of every wave and combined into 1 array
+       //grab the first n samples of every wave and combined into 1 array
        ArrayList<String> combinedWaves = DynamicWave.combineWaves(notes);
 
       DynamicWave cwave = new DynamicWave(
-                headers[0], //sampleCount
-                headers[1], //bitsPerSample
-                headers[2], //channels
-                headers[3],  //sampleRate
-                headers[4], //frequency
+            combinedWaves.size(), //sampleCount
+                16, //bitsPerSample
+                2, //channels
+                44100,  //sampleRate
+                0, //frequency
                 combinedWaves, //samples
                 "dynamic", //fileName
                 0,      //phase shift
-                notes.size()*0.000544218);     //duration for 24 samples 
-        
+                notes.size()*0.5);     //duration
+
         cwave.synthesize();
         DataToText.writeTxt(cwave);
         
