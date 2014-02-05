@@ -17,16 +17,16 @@ public class CustomWaveInterpolation extends Wave{
     
     public CustomWaveInterpolation(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n) {
         super(sc*2,bps,c,sr,f,n);
-        samples = l;
+        this.samples = l;
     }
     
     public void synthesize() {
         String row;
-        super.addSample(0+"\t"+0);
+        double step = 0.5;
         super.addSample(0+"\t"+0);
         super.addSample(0+"\t"+0);
         
-        for (double i = 5.0; i < super.getSampleCount()/2 + 4; i += 0.5) {
+        for (double i = 0.0; i < super.getSampleCount()/2 - 1; i += step) {
             row = samples.get((int)Math.floor(i));
             int s1 = Integer.parseInt(row.substring(0, row.indexOf('\t')));
             int s2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
@@ -35,6 +35,5 @@ public class CustomWaveInterpolation extends Wave{
             int sa2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
             super.addSample((s1+sa1)/2+"\t"+(s2+sa2)/2);
         }
-        
     }
 }

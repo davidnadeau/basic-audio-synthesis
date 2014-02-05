@@ -2,15 +2,18 @@ package org.soote.cosc.cosc4p98.assignone;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.IO.DataToText;
 import org.soote.cosc.cosc4p98.assignone.IO.TextToData;
 import org.soote.cosc.cosc4p98.assignone.Samples.CustomWave;
 import org.soote.cosc.cosc4p98.assignone.Samples.CustomWaveHalfPitch;
 import org.soote.cosc.cosc4p98.assignone.Samples.CustomWaveInterpolation;
+import org.soote.cosc.cosc4p98.assignone.Samples.DynamicWave;
 import org.soote.cosc.cosc4p98.assignone.Samples.RandomWave;
 import org.soote.cosc.cosc4p98.assignone.Samples.SawtoothWave;
 import org.soote.cosc.cosc4p98.assignone.Samples.SineWave;
 import org.soote.cosc.cosc4p98.assignone.Samples.SquareWave;
+import org.soote.cosc.cosc4p98.assignone.Samples.Wave;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,120 +29,122 @@ public class SampAndSynth {
     private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
     
     public SampAndSynth() throws IOException {
+        LinkedList<Wave> waves = new LinkedList();
+        
         ////////////////////////////////////
-        //a i
+        //1a i
         ////////////////////////////////////
-        SineWave sine440 = new SineWave(
+        waves.add(new SineWave(
                 132300, //sampleCount
                 16,     //bitsPerSample
                 2,      //channels
                 44100,  //sampleRate
                 440,     //frequency
-                "sine-440");
-        sine440.synthesize();
-        DataToText.writeTxt(sine440);
+                "sine-440")); //fileName
 
         ////////////////////////////////////
-        //a ii
+        //1a ii
         ////////////////////////////////////
-        SquareWave square = new SquareWave(
+        waves.add(new SquareWave(
                 132300, //sampleCount
                 16,     //bitsPerSample
                 2,      //channels
                 44100,  //sampleRate
                 440,   //frequency
-                "square");
-
-        square.synthesize();
-        DataToText.writeTxt(square);
+                "square")); //fileName
         
         ////////////////////////////////////
-        //a iii
+        //1a iii
         ////////////////////////////////////
-        SineWave sine880 = new SineWave(
+        waves.add(new SineWave(
                 132300, //sampleCount
                 16,     //bitsPerSample
                 2,      //channels
                 44100,  //sampleRate
                 880,   //frequency
-                "sine-880");
-        sine880.synthesize();
-        DataToText.writeTxt(sine880);
+                "sine-880")); //fileName
 
         ////////////////////////////////////
-        //a iv
+        //1a iv
         ////////////////////////////////////
-        SawtoothWave sawtooth = new SawtoothWave(
+        waves.add(new SawtoothWave(
                 132300, //sampleCount
                 16,     //bitsPerSample
                 2,      //channels
                 44100,  //sampleRate
                 440,   //frequency
-                "sawtooth");
-        sawtooth.synthesize();
-        DataToText.writeTxt(sawtooth);
+                "sawtooth")); //fileName
 
         ////////////////////////////////////
-        //a v
+        //1a v
         ////////////////////////////////////
-        RandomWave randomWave = new RandomWave(
+        waves.add(new RandomWave(
                 132300, //sampleCount
                 16,     //bitsPerSample
                 2,      //channels
                 44100,  //sampleRate
                 440,   //frequency
-                "randomwave");
-        randomWave.synthesize();
-        DataToText.writeTxt(randomWave);
+                "randomwave")); //fileName
         
         ////////////////////////////////////
-        //a vi
+        //1a vi
         ////////////////////////////////////
         ArrayList<String> customSample = TextToData.readTxt(FILEPATH+"gipsy.kings.hotel.california.txt");
-        //System.out.println(Arrays.toString(customSample.toArray()));
         int[] headers = TextToData.parseHeader(customSample);
-        CustomWave customWave = new CustomWave(
+        for (int i = 0; i < 5; i++) customSample.remove(0);
+        
+        waves.add(new CustomWave(
                 headers[0], //sampleCount
                 headers[1], //bitsPerSample
                 headers[2], //channels
                 headers[3],  //sampleRate
                 headers[4], //frequency
-                customSample,
-                "custom");
-        customWave.synthesize();
-        DataToText.writeTxt(customWave);
+                customSample, //samples for custome clip
+                "custom")); //fileName
         
         ////////////////////////////////////
-        //a vii
+        //1a vii
         ////////////////////////////////////
-        CustomWaveHalfPitch customWaveHalfPitch = new CustomWaveHalfPitch(
+        waves.add(new CustomWaveHalfPitch(
                 headers[0], //sampleCount
                 headers[1], //bitsPerSample
                 headers[2], //channels
                 headers[3],  //sampleRate
                 headers[4], //frequency
-                customSample, 
-                "custom-halfpitch");
-        customWaveHalfPitch.synthesize();
-        DataToText.writeTxt(customWaveHalfPitch);
+                customSample, //samples for custome clip
+                "custom-halfpitch")); //fileName
         
         ////////////////////////////////////
-        //a viii
+        //1a viii
         ////////////////////////////////////
-        CustomWaveInterpolation customWaveInterpolation = new CustomWaveInterpolation(
+        waves.add(new CustomWaveInterpolation(
                 headers[0], //sampleCount
                 headers[1], //bitsPerSample
                 headers[2], //channels
                 headers[3],  //sampleRate
                 headers[4], //frequency
-                customSample, 
-                "custom-interpolation");
-        customWaveInterpolation.synthesize();
-        DataToText.writeTxt(customWaveInterpolation);        
+                customSample, //samples for custome clip
+                "custom-interpolation")); //fileName
+        
+        ////////////////////////////////////
+        //1b
+        ////////////////////////////////////
+       waves.add(new DynamicWave(
+                headers[0], //sampleCount
+                headers[1], //bitsPerSample
+                headers[2], //channels
+                headers[3],  //sampleRate
+                headers[4], //frequency
+                customSample, //samples
+                "dynamic", //fileName
+                10,      //phase shift
+                15));     //duration
+       
+       //Generate every wave and write each to text
+       for (Wave w : waves) {
+           w.synthesize();
+           DataToText.writeTxt(w);
+       }
+        
     }
-    
-    public static void main(String[] args) throws IOException {
-        new SampAndSynth();
-    }
-    
 }
