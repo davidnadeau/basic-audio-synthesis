@@ -12,22 +12,23 @@ import java.util.ArrayList;
  *
  * @author soote
  */
-public class CustomWave extends Wave {
+public class CustomWaveHalfPitch extends Wave {
     private ArrayList<String> samples;
     
-    public CustomWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n) {
-        super(sc,bps,c,sr,f,n);
+    public CustomWaveHalfPitch(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n) {
+        //doubling every sample, so doubling the sample count
+        super(sc*2,bps,c,sr,f,n);
         samples = l;
     }
     
     public void synthesize() {
         String row;
-        for (int i = 5; i < super.getSampleCount()+5; i++) {
+        for (int i = 5; i < super.getSampleCount()/2+5; i++) {
             row = samples.get(i);
             int s1 = Integer.parseInt(row.substring(0, row.indexOf('\t')));
             int s2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
             super.addSample(s1+"\t"+s2);
+            super.addSample(s1+"\t"+s2);
         }
-        
     }
 }

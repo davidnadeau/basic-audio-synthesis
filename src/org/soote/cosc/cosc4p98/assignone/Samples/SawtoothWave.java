@@ -6,14 +6,12 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author soote
  */
 public class SawtoothWave extends Wave{
-    private static final int AMPLITUDE = 15000;
+    private static final int AMPLITUDE = 10000;
 
     public SawtoothWave(int sc, int bps, int c, int sr, int f, String n) {
         super(sc,bps,c,sr,f,n);
@@ -21,11 +19,10 @@ public class SawtoothWave extends Wave{
     
     public void synthesize() {
         double sample = -1,
-               period = (this.getFrequency() * 2.) / this.getSampleRate();
+               period = (super.getFrequency() * 2.) / super.getSampleRate();
         
-        for (int i = 1; i <= this.getSampleCount(); i++) {
-            System.out.println(sample);
-            super.addSample((int)(AMPLITUDE*sample) +"\t" + (int)(AMPLITUDE*sample));
+        for (int i = 1; i <= super.getSampleCount(); i++) {
+            super.addSample(Math.round(AMPLITUDE*sample) +"\t" + Math.round(AMPLITUDE*sample));
             sample+= period;
             if (sample >= 1) sample = -1;
         }

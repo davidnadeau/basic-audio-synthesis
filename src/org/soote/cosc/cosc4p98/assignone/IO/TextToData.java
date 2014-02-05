@@ -32,7 +32,7 @@ public class TextToData {
     }
     
     public static int[] parseHeader(ArrayList<String> l) {
-        int[] headers = new int[4];
+        int[] headers = new int[5];
         String row = l.get(0);
         headers[0] = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
         row = l.get(1);
@@ -41,6 +41,7 @@ public class TextToData {
         headers[2] = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
         row = l.get(3);
         headers[3] = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
+        headers[4] = 440;
         return headers;
     }
     

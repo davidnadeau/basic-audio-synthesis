@@ -29,7 +29,6 @@ public abstract class Wave {
         this.channels = c;
         this.sampleRate = sr;
         this.frequency = f;
-        this.frequency = f;
         this.name = n;
         this.addHeaders();
     }
