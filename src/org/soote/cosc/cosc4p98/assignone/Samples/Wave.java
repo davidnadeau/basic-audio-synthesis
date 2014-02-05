@@ -7,6 +7,7 @@
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -20,7 +21,7 @@ public abstract class Wave {
                 sampleRate,
                 frequency;
     private ArrayList<String> data;
-    protected String name;
+    private String name;
 
     public Wave(int sc, int bps, int c, int sr, int f, String n) {
         data = new ArrayList();
@@ -40,11 +41,17 @@ public abstract class Wave {
             "SAMPLERATE:\t"+this.sampleRate,
             "NORMALIZED:\tFALSE"
         };
-        for (String h : headers) data.add(h);
+        data.addAll(Arrays.asList(headers));
         
+    }
+    public void stripHeader() {
+        for (int i = 0; i < 5; i++) {
+            this.data.remove(0);
+        }
     }
     public void synthesize() {}
     public String getType() { return "defualt"; }
+    public void setFrequency(int f) { this.frequency = f; }
     public void addSample(String s) { this.data.add(s); }
     
     public int getSampleCount() { return sampleCount; }

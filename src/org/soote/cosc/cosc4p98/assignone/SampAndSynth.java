@@ -126,25 +126,51 @@ public class SampAndSynth {
                 customSample, //samples for custome clip
                 "custom-interpolation")); //fileName
         
+        //Generate every wave and write each to text
+        for (Wave w : waves) {
+            w.synthesize();
+            DataToText.writeTxt(w);
+        }
+       
         ////////////////////////////////////
         //1b
         ////////////////////////////////////
-       waves.add(new DynamicWave(
+        
+        //list to hold 24 notes
+        LinkedList<Wave> notes = new LinkedList();
+        //each note will be 39 hz larger
+        int hertz = 0;
+        for (int i = 0; i < 24; i++) {
+            //create tone sample
+            notes.add(new SineWave(
+                         132300, //sampleCount
+                         16,     //bitsPerSample
+                         2,      //channels
+                         44100,  //sampleRate
+                         hertz+=39,     //frequency, each note will be 39 hz higher
+                         "dynamic-sine")); //fileName
+        }
+        //generate tone data and the auto strip header
+       for (Wave w : notes) {
+           w.synthesize();
+           w.stripHeader();
+       }
+       //grab the first 24 samples of every wave and combined into 1 array
+       ArrayList<String> combinedWaves = DynamicWave.combineWaves(notes);
+
+      DynamicWave cwave = new DynamicWave(
                 headers[0], //sampleCount
                 headers[1], //bitsPerSample
                 headers[2], //channels
                 headers[3],  //sampleRate
                 headers[4], //frequency
-                customSample, //samples
+                combinedWaves, //samples
                 "dynamic", //fileName
-                10,      //phase shift
-                15));     //duration
-       
-       //Generate every wave and write each to text
-       for (Wave w : waves) {
-           w.synthesize();
-           DataToText.writeTxt(w);
-       }
+                0,      //phase shift
+                notes.size()*0.000544218);     //duration for 24 samples 
+        
+        cwave.synthesize();
+        DataToText.writeTxt(cwave);
         
     }
 }

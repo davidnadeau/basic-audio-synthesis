@@ -6,8 +6,6 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author soote
@@ -21,9 +19,9 @@ public class SineWave extends Wave{
     
     public void synthesize() {
         int sample;
-        for (int i = 0; i < this.getSampleCount(); i++) {
-            sample =  (int) (AMPLITUDE*Math.sin(2 * Math.PI * this.getFrequency()/this.getSampleRate() * i));
-            this.addSample(sample +"\t" + sample);
+        for (int i = 0; i < super.getSampleCount(); i++) {
+            sample =  (int) (AMPLITUDE*Math.sin(2 * Math.PI * super.getFrequency()/super.getSampleRate() * i));
+            super.addSample(sample +"\t" + sample);
         }
     }
 }

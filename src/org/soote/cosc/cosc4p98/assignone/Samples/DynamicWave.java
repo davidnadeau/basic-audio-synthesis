@@ -7,17 +7,19 @@
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
  * @author soote
  */
 public class DynamicWave extends Wave{
-    private int phase, duration,sampleCountMod;
+    private double phase, duration;
+    private int sampleCountMod;
     private ArrayList<String> samples;
 
-    public DynamicWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n, int p, int d) {
-        super(d*sr,bps,c,sr,f,n);
+    public DynamicWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n, double p, double d) {
+        super((int)(d*sr),bps,c,sr,f,n);
         this.sampleCountMod = sc;
         this.samples = l;
         this.phase = p;
@@ -26,11 +28,26 @@ public class DynamicWave extends Wave{
     
     public void synthesize() {
         String row;
-        for (int i = 0; i < this.duration*super.getSampleRate(); i++) {
-            row = this.samples.get(i%sampleCountMod);
-            int s1 = Integer.parseInt(row.substring(0, row.indexOf('\t')));
-            int s2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
-            super.addSample(s1+"\t"+s2);
+        for (int i = 0; i <  super.getSampleCount(); i++) {
+            row = this.samples.get((int)(this.phase+i)%this.samples.size());
+            super.addSample(row);
         }
+    }
+    
+    public static ArrayList<String> combineWaves(LinkedList<Wave> ll) {
+        ArrayList<String> l = new ArrayList();
+        ArrayList<String> al;
+        int index;
+        for (Wave w  : ll) {
+            w.stripHeader();
+            index = 0;
+            al = w.getData();
+            for (String s : al) {
+                if (index>22050) break;
+                l.add(s);
+                index++;
+            }
+        }
+        return l;
     }
 }

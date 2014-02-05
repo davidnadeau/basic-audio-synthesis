@@ -6,8 +6,6 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author soote
@@ -19,9 +17,9 @@ public class SquareWave extends Wave{
     
     public void synthesize() {
         int sample;
-        for (int i = 1; i <= this.getSampleCount(); i++) {
+        for (int i = 1; i <= super.getSampleCount(); i++) {
             sample =  (Math.sin(i) > 0) ?1:0;
-            this.addSample(sample +"\t" + sample);
+            super.addSample(sample +"\t" + sample);
         }
     }
 }

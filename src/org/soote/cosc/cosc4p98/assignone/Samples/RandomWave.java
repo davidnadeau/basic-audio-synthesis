@@ -6,8 +6,6 @@
 
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author soote
