@@ -22,6 +22,7 @@ public class CustomWaveInterpolation extends Wave{
     
     public void synthesize() {
         String row;
+        
         double step = 0.5;
         super.addSample(0+"\t"+0);
         super.addSample(0+"\t"+0);

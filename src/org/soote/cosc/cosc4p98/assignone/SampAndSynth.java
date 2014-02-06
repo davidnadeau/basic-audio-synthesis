@@ -137,29 +137,40 @@ public class SampAndSynth {
         //1b
         ////////////////////////////////////
         
-        //list to hold 24 notes
-        LinkedList<Wave> notes = new LinkedList();
-        //each note will be 39 hz larger
-        int hertz = 0;
-        for (int i = 0; i < 24; i++) {
+        //list to hold 24 semitones
+        LinkedList<Wave> semitones = new LinkedList();
+
+        int hertz = 440; //original 
+        for (double i = 1.0; i <= 12.0; i++) {
             //create tone sample
-            notes.add(new SineWave(
+            semitones.add(new SineWave(
                          132300, //sampleCount
                          16,     //bitsPerSample
                          2,      //channels
                          44100,  //sampleRate
-                         hertz+=39,     //frequency, each note will be 39 hz higher
+                         (int)(hertz*(i/12.0)),     //frequency
+                         "dynamic-sine")); //fileName
+        }
+        for (double i = 11.0; i >= 0.0; i--) {
+            //create tone sample
+            semitones.add(new SineWave(
+                         132300, //sampleCount
+                         16,     //bitsPerSample
+                         2,      //channels
+                         44100,  //sampleRate
+                          (int)(hertz/(i/12.0)),   //frequency
                          "dynamic-sine")); //fileName
         }
         //generate tone data and the auto strip header
-       for (Wave w : notes) {
+       for (Wave w : semitones) {
            w.synthesize();
            w.stripHeader();
        }
-       //grab the first n samples of every wave and combined into 1 array
-       ArrayList<String> combinedWaves = DynamicWave.combineWaves(notes);
+        //grab the first n samples of every wave and combined into 1 array
+        ArrayList<String> combinedWaves = DynamicWave.combineWaves(semitones);
 
-      DynamicWave cwave = new DynamicWave(
+        System.out.println(combinedWaves.size());
+        DynamicWave cwave = new DynamicWave(
             combinedWaves.size(), //sampleCount
                 16, //bitsPerSample
                 2, //channels
@@ -168,7 +179,7 @@ public class SampAndSynth {
                 combinedWaves, //samples
                 "dynamic", //fileName
                 0,      //phase shift
-                notes.size()*0.5);     //duration
+                semitones.size()*0.5);     //duration
 
         cwave.synthesize();
         DataToText.writeTxt(cwave);
