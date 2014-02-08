@@ -12,6 +12,6 @@ package org.soote.cosc.cosc4p98.assignone;
  */
 public class LowFreqOscAndMangling {
     public LowFreqOscAndMangling(){
-        
+
     }
 }

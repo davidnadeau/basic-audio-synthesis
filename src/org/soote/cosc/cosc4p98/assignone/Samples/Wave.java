@@ -42,7 +42,6 @@ public abstract class Wave {
             "NORMALIZED:\tFALSE"
         };
         data.addAll(Arrays.asList(headers));
-        
     }
     public void stripHeader() {
         for (int i = 0; i < 5; i++) {
