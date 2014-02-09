@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import org.soote.cosc.cosc4p98.assignone.IO.DataToText;
-import org.soote.cosc.cosc4p98.assignone.IO.TextToData;
-import org.soote.cosc.cosc4p98.assignone.Samples.CustomWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.CustomWaveHalfPitch;
-import org.soote.cosc.cosc4p98.assignone.Samples.CustomWaveInterpolation;
-import org.soote.cosc.cosc4p98.assignone.Samples.DynamicWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.RandomWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.SawtoothWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.SineWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.SquareWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.Wave;
+import org.soote.cosc.cosc4p98.assignone.io.DataToText;
+import org.soote.cosc.cosc4p98.assignone.io.TextToData;
+import org.soote.cosc.cosc4p98.assignone.util.CustomWave;
+import org.soote.cosc.cosc4p98.assignone.util.CustomWaveHalfPitch;
+import org.soote.cosc.cosc4p98.assignone.util.CustomWaveInterpolation;
+import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
+import org.soote.cosc.cosc4p98.assignone.util.RandomWave;
+import org.soote.cosc.cosc4p98.assignone.util.SawtoothWave;
+import org.soote.cosc.cosc4p98.assignone.util.SineWave;
+import org.soote.cosc.cosc4p98.assignone.util.SquareWave;
+import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -147,17 +147,17 @@ public class SampAndSynth {
         swave.synthesize();
         swave.stripHeader();
 
-         LinkedList<DynamicWave> semitones = new LinkedList();
+         LinkedList<SimpleWaveManipulator> semitones = new LinkedList();
          for (double i = 0; i < 24; i+=1.0) {
              double step = i*(1.0/12.0);
-            semitones.add(new DynamicWave("dynamic"+i+Math.random()*10,swave.getData(), step, (int) (22050*step)));
+            semitones.add(new SimpleWaveManipulator("dynamic"+i+Math.random()*10,swave.getData(), step, (int) (22050*step)));
          }
 
-         for (DynamicWave w : semitones) {
+         for (SimpleWaveManipulator w : semitones) {
             w.synthesize();
          }
 
-         DynamicWave dwave = DynamicWave.concatenateWaves(semitones,"semitones");
+         SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(semitones,"semitones");
          dwave.loadSamples();
          DataToText.writeTxt(dwave);	
     }

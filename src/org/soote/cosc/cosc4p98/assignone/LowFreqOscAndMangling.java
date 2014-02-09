@@ -9,10 +9,10 @@ package org.soote.cosc.cosc4p98.assignone;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import org.soote.cosc.cosc4p98.assignone.IO.DataToText;
-import org.soote.cosc.cosc4p98.assignone.IO.TextToData;
-import org.soote.cosc.cosc4p98.assignone.Samples.CustomWave;
-import org.soote.cosc.cosc4p98.assignone.Samples.DynamicWave;
+import org.soote.cosc.cosc4p98.assignone.io.DataToText;
+import org.soote.cosc.cosc4p98.assignone.io.TextToData;
+import org.soote.cosc.cosc4p98.assignone.util.CustomWave;
+import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
 
 /**
  *
@@ -39,24 +39,24 @@ public class LowFreqOscAndMangling {
         cwave.synthesize();
         cwave.stripHeader();
         
-        LinkedList<DynamicWave> l = new LinkedList();
+        LinkedList<SimpleWaveManipulator> l = new LinkedList();
         double step, precentOfSample = 1;
         
         for (double i = 0 ; i <10;i++){
             step = sine(2, 1,0,0,i);
             System.out.println(step);
-            l.add(new DynamicWave(
+            l.add(new SimpleWaveManipulator(
                "lfowave",
                cwave.getData(),
                step, 
                (int) (cwave.getData().size()*Math.abs(step)*precentOfSample)));
         }
         
-        for (DynamicWave w : l) {
+        for (SimpleWaveManipulator w : l) {
             w.synthesize();
         }
          
-        DynamicWave  dwave = DynamicWave.concatenateWaves(l, "lfowave");
+        SimpleWaveManipulator  dwave = SimpleWaveManipulator.concatenateWaves(l, "lfowave");
         dwave.loadSamples();
         DataToText.writeTxt(dwave);
 

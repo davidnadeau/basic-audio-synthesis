@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.soote.cosc.cosc4p98.assignone.IO;
+package org.soote.cosc.cosc4p98.assignone.io;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

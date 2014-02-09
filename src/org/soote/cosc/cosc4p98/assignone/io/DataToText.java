@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 
-package org.soote.cosc.cosc4p98.assignone.IO;
+package org.soote.cosc.cosc4p98.assignone.io;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.soote.cosc.cosc4p98.assignone.Samples.Wave;
+import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
 /**
  *

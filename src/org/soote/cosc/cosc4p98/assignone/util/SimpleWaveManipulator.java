@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.soote.cosc.cosc4p98.assignone.Samples;
+package org.soote.cosc.cosc4p98.assignone.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,18 +15,18 @@ import java.util.concurrent.Callable;
  *
  * @author soote
  */
-public class DynamicWave extends Wave{
+public class SimpleWaveManipulator extends Wave{
     private double phase;
     private int duration;
     private ArrayList<String> samples;
 
-    public DynamicWave(String n, ArrayList<String> s, double p, int d) {
+    public SimpleWaveManipulator(String n, ArrayList<String> s, double p, int d) {
         super(d,16,2,44100,440,n);
         this.samples = s;
         this.phase = p;
         this.duration = d;
     }
-    public DynamicWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n, double p, int d) {
+    public SimpleWaveManipulator(int sc, int bps, int c, int sr, int f, ArrayList<String> l, String n, double p, int d) {
         super(d,bps,c,sr,f,n);
         this.samples = l;
         this.phase = p;
@@ -70,7 +70,7 @@ public class DynamicWave extends Wave{
         return i < 0 ? this.samples.size() + i : i;
     }
     
-    public static DynamicWave concatenateWaves(LinkedList<DynamicWave> ll, String fileName) {
+    public static SimpleWaveManipulator concatenateWaves(LinkedList<SimpleWaveManipulator> ll, String fileName) {
         ArrayList<String> l = new ArrayList();
         ArrayList<String> al;
         int index;
@@ -84,6 +84,6 @@ public class DynamicWave extends Wave{
             }
         }
         
-        return new DynamicWave(fileName,l,0.0,l.size());
+        return new SimpleWaveManipulator(fileName,l,0.0,l.size());
     }
 }

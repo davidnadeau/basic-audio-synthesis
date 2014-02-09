@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.soote.cosc.cosc4p98.assignone.Samples;
+package org.soote.cosc.cosc4p98.assignone.util;
 
 /**
  *
