@@ -2,7 +2,6 @@ package org.soote.cosc.cosc4p98.assignone;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.io.DataToText;
 import org.soote.cosc.cosc4p98.assignone.io.TextToData;
@@ -147,19 +146,19 @@ public class SampAndSynth {
         swave.synthesize();
         swave.stripHeader();
 
-         LinkedList<SimpleWaveManipulator> semitones = new LinkedList();
-         for (double i = 0; i < 24; i+=1.0) {
-             double step = i*(1.0/12.0);
+        LinkedList<SimpleWaveManipulator> semitones = new LinkedList();
+        for (double i = 0; i < 24; i+=1.0) {
+            double step = i*(1.0/12.0);
             semitones.add(new SimpleWaveManipulator("dynamic"+i+Math.random()*10,swave.getData(), step, (int) (22050*step)));
          }
 
-         for (SimpleWaveManipulator w : semitones) {
-            w.synthesize();
-         }
+        for (SimpleWaveManipulator w : semitones) {
+           w.synthesize();
+        }
 
-         SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(semitones,"semitones");
-         dwave.loadSamples();
-         DataToText.writeTxt(dwave);	
+        SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(semitones,"semitones");
+        dwave.loadSamples();
+        DataToText.writeTxt(dwave);	
     }
 
 

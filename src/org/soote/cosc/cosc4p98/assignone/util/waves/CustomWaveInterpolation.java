@@ -29,13 +29,24 @@ public class CustomWaveInterpolation extends Wave{
         super.addSample(0+"\t"+0);
         
         for (double i = 0.0; i < super.getSampleCount()/2 - 1; i += step) {
-            row = samples.get((int)Math.floor(i));
-            int s1 = Integer.parseInt(row.substring(0, row.indexOf('\t')));
-            int s2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
-            row = samples.get((int)Math.ceil(i));
-            int sa1 = Integer.parseInt(row.substring(0, row.indexOf('\t')));
-            int sa2 = Integer.parseInt(row.substring(row.indexOf('\t')+1,row.length()));
-            super.addSample((s1+sa1)/2+"\t"+(s2+sa2)/2);
+            int i1 = (int)(Math.floor(i) % this.samples.size()),
+                i2 = (int)(Math.ceil(i) % this.samples.size());
+             
+            String[] sFloor = this.samples.get(circularIndex(i1)).split("\t", -1),
+                     sCeil  = this.samples.get(circularIndex(i2)).split("\t", -1);
+            
+            String[] values = {
+                super.interpolate(sFloor[0],sCeil[0]),
+                super.interpolate(sFloor[1],sCeil[1])
+            };
+            row =  values[0]+"\t"+values[1];
+            super.addSample(row);
+            
+            //if we're going in reverse
+            if (i<=0-(super.getSampleCount()/2 - 1)) break;
         }
+    }
+    private int circularIndex(int i) {
+        return i < 0 ? this.samples.size() + i : i;
     }
 }

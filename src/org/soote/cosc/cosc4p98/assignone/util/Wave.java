@@ -48,6 +48,10 @@ public abstract class Wave {
             this.data.remove(0);
         }
     }
+    public String interpolate(String a, String b) {
+        return Integer.toString((int)((Integer.parseInt(a)-(Integer.parseInt(b) - (Integer.parseInt(a))))*0.5));
+    }
+    
     public void synthesize() {}
     public String getType() { return "defualt"; }
     public void setFrequency(int f) { this.frequency = f; }

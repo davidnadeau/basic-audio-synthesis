@@ -43,25 +43,21 @@ public class SimpleWaveManipulator extends Wave{
         for (double i = 0; i < this.duration; i+=this.phase) {
 
             int i1 = (int)(Math.floor(i) % this.samples.size()),
-                  i2 = (int)(Math.ceil(i) % this.samples.size());
+                i2 = (int)(Math.ceil(i) % this.samples.size());
              
             String[] sFloor = this.samples.get(circularIndex(i1)).split("\t", -1),
-                         sCeil = this.samples.get(circularIndex(i2)).split("\t", -1);
+                     sCeil  = this.samples.get(circularIndex(i2)).split("\t", -1);
             
             String[] values = {
-                interpolate(sFloor[0],sCeil[0]),
-                interpolate(sFloor[1],sCeil[1])
+                super.interpolate(sFloor[0],sCeil[0]),
+                super.interpolate(sFloor[1],sCeil[1])
             };
             row =  values[0]+"\t"+values[1];
             super.addSample(row);
             
-            //if we're going in reverse, for will never terminate
+            //if we're going in reverse
             if (i<=0-this.duration) break;
         }
-    }
-    
-    private String interpolate(String a, String b) {
-        return Integer.toString((int)((Integer.parseInt(a)-(Integer.parseInt(b) - (Integer.parseInt(a))))*0.5));
     }
     
     private int circularIndex(int i) {

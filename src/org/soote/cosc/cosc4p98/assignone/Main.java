@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @author soote
  */
-public class IntoToDigital {
+public class Main {
     public static void main(String[] args) throws IOException, Exception {
         ////////////////////////////////////
         //Part 1
