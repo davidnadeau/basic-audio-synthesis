@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.soote.cosc.cosc4p98.assignone.io;
 
 import java.io.BufferedReader;
@@ -13,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author soote
+ * @author David Nadeau
  */
 public class TextToData {
 

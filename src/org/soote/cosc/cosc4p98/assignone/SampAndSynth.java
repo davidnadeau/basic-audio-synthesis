@@ -5,24 +5,19 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.io.DataToText;
 import org.soote.cosc.cosc4p98.assignone.io.TextToData;
+import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
+import org.soote.cosc.cosc4p98.assignone.util.Wave;
 import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWave;
 import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWaveHalfPitch;
 import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWaveInterpolation;
-import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
 import org.soote.cosc.cosc4p98.assignone.util.waves.RandomWave;
 import org.soote.cosc.cosc4p98.assignone.util.waves.SawtoothWave;
 import org.soote.cosc.cosc4p98.assignone.util.waves.SineWave;
 import org.soote.cosc.cosc4p98.assignone.util.waves.SquareWave;
-import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author soote
+ * @author David Nadeau
  */
 public class SampAndSynth {
 

@@ -14,7 +14,7 @@ import org.soote.cosc.cosc4p98.assignone.util.waves.ReverbWave;
 
 /**
  *
- * @author soote
+ * @author David Nadeau
  */
 public class DSP {
 
@@ -40,8 +40,8 @@ public class DSP {
                 customSample, //samples for custom clip
                 "reverb"); //fileName
 
-        //delay must be < 1300
-        rwave.synthesize(1300, 0.7, 3); //(delay,volume,depth)
+        //delay must be < 1543.5
+        rwave.synthesize(1000, 0.7, 2); //(delay,volume,depth)
         DataToText.writeTxt(rwave);
 
         //Echo Effect
@@ -54,8 +54,8 @@ public class DSP {
                 customSample, //samples for custom clip
                 "echo"); //fileName
 
-        //delay myst be > 1300
-        ewave.synthesize(5000, 0.7, 3); //(delay,volume,depth)
+        //delay myst be > 1543.5
+        ewave.synthesize(5000, 0.7, 2); //(delay,volume,depth)
         DataToText.writeTxt(ewave);
 
     }
