@@ -21,7 +21,8 @@ import org.soote.cosc.cosc4p98.assignone.util.waves.SquareWave;
  */
 public class SampAndSynth {
 
-    private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
+    private static final String FILEPATH
+            = "/home/soote/documents/school/4p98/AssignOne/music/";
 
     /**
      * Create all the samples for part 1a.
@@ -89,7 +90,8 @@ public class SampAndSynth {
         ////////////////////////////////////
         //1a vi
         ////////////////////////////////////
-        ArrayList<String> customSample = TextToData.readTxt(FILEPATH + "gipsy.kings.hotel.california.txt");
+        ArrayList<String> customSample = TextToData.readTxt(
+                FILEPATH + "gipsy.kings.hotel.california.txt");
         int[] headers = TextToData.parseHeader(customSample);
         for (int i = 0; i < 5; i++) {
             customSample.remove(0);
@@ -151,14 +153,16 @@ public class SampAndSynth {
         LinkedList<SimpleWaveManipulator> semitones = new LinkedList();
         for (double i = 0; i < 24; i += 1.0) {
             double step = i * (1.0 / 12.0);
-            semitones.add(new SimpleWaveManipulator("dynamic" + i + Math.random() * 10, swave.getData(), step, (int) (22050 * step)));
+            semitones.add(new SimpleWaveManipulator("dynamic" + i + Math
+                    .random() * 10, swave.getData(), step, (int) (22050 * step)));
         }
 
         for (SimpleWaveManipulator w : semitones) {
             w.synthesize();
         }
 
-        SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(semitones, "semitones");
+        SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(
+                semitones, "semitones");
         dwave.loadSamples();
         DataToText.writeTxt(dwave);
     }

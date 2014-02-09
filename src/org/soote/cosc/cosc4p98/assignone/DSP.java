@@ -18,11 +18,13 @@ import org.soote.cosc.cosc4p98.assignone.util.waves.ReverbWave;
  */
 public class DSP {
 
-    private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
+    private static final String FILEPATH
+            = "/home/soote/documents/school/4p98/AssignOne/music/";
 
     public DSP() throws IOException {
         //load samples into a list
-        ArrayList<String> customSample = TextToData.readTxt(FILEPATH + "gipsy.kings.hotel.california.txt");
+        ArrayList<String> customSample = TextToData.readTxt(
+                FILEPATH + "gipsy.kings.hotel.california.txt");
         int[] headers = TextToData.parseHeader(customSample);
 
         //remove headers

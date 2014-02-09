@@ -14,10 +14,12 @@ import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWave;
  */
 public class LowFreqOscAndMangling {
 
-    private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
+    private static final String FILEPATH
+            = "/home/soote/documents/school/4p98/AssignOne/music/";
 
     public LowFreqOscAndMangling() throws IOException, Exception {
-        ArrayList<String> customSample = TextToData.readTxt(FILEPATH + "gipsy.kings.hotel.california.txt");
+        ArrayList<String> customSample = TextToData.readTxt(
+                FILEPATH + "gipsy.kings.hotel.california.txt");
         int[] headers = TextToData.parseHeader(customSample);
 
         for (int i = 0; i < 5; i++) {
@@ -52,13 +54,15 @@ public class LowFreqOscAndMangling {
             w.synthesize();
         }
 
-        SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(l, "lfowave");
+        SimpleWaveManipulator dwave = SimpleWaveManipulator.concatenateWaves(l,
+                "lfowave");
         dwave.loadSamples();
         DataToText.writeTxt(dwave);
 
     }
 
-    public double sine(double amplitude, int frequency, double phase, double displacement, double i) {
+    public double sine(double amplitude, int frequency, double phase,
+            double displacement, double i) {
         return amplitude * Math.sin(frequency * (i - phase)) + displacement;
     }
 }

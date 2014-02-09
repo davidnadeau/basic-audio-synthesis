@@ -47,7 +47,8 @@ public abstract class Wave {
 
     //return a linear interpolation of two values
     public String interpolate(String a, String b) {
-        return Integer.toString((int) ((Integer.parseInt(a) - (Integer.parseInt(b) - (Integer.parseInt(a)))) * 0.5));
+        return Integer.toString((int) ((Integer.parseInt(a) - (Integer.parseInt(
+                b) - (Integer.parseInt(a)))) * 0.5));
     }
 
     //find global min and global max values in list

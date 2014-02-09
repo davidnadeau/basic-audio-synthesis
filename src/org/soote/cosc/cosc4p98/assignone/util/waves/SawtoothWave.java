@@ -19,7 +19,8 @@ public class SawtoothWave extends Wave {
                 period = (super.getFrequency() * 2.) / super.getSampleRate();
 
         for (int i = 1; i <= super.getSampleCount(); i++) {
-            super.addSample(Math.round(AMPLITUDE * sample) + "\t" + Math.round(AMPLITUDE * sample));
+            super.addSample(Math.round(AMPLITUDE * sample) + "\t" + Math.round(
+                    AMPLITUDE * sample));
             sample += period;
             if (sample >= 1) {
                 sample = -1;

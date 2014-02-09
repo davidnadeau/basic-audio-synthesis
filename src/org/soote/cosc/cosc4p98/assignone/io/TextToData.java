@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class TextToData {
 
-    public static ArrayList readTxt(String filePath) throws FileNotFoundException, IOException {
+    public static ArrayList readTxt(String filePath) throws
+            FileNotFoundException, IOException {
         ArrayList l = null;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             l = new ArrayList();
@@ -29,13 +30,17 @@ public class TextToData {
     public static int[] parseHeader(ArrayList<String> l) {
         int[] headers = new int[5];
         String row = l.get(0);
-        headers[0] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row.length()));
+        headers[0] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row
+                .length()));
         row = l.get(1);
-        headers[1] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row.length()));
+        headers[1] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row
+                .length()));
         row = l.get(2);
-        headers[2] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row.length()));
+        headers[2] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row
+                .length()));
         row = l.get(3);
-        headers[3] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row.length()));
+        headers[3] = Integer.parseInt(row.substring(row.indexOf('\t') + 1, row
+                .length()));
         headers[4] = 440;
         return headers;
     }

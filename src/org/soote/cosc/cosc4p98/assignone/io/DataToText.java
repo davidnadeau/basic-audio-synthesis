@@ -15,7 +15,8 @@ public class DataToText {
     public static void writeTxt(Wave w) {
         ArrayList<String> l = w.getData();
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("music/" + w.getName() + ".txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("music/" + w
+                    .getName() + ".txt"));
             for (int i = 0; i < w.getData().size(); i++) {
                 out.write(l.get(i));
                 out.newLine();
