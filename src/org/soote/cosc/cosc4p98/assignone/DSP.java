@@ -43,7 +43,7 @@ public class DSP {
                 "reverb"); //fileName
 
         //delay must be < 1543.5
-        rwave.synthesize(1000, 0.7, 2); //(delay,volume,depth)
+        rwave.synthesize(1000, 0.7); //(delay,volume)
         DataToText.writeTxt(rwave);
 
         //Echo Effect
@@ -56,7 +56,7 @@ public class DSP {
                 customSample, //samples for custom clip
                 "echo"); //fileName
 
-        //delay myst be > 1543.5
+        //delay myst be > 1543.5, can mix a depth # of times
         ewave.synthesize(5000, 0.7, 2); //(delay,volume,depth)
         DataToText.writeTxt(ewave);
 

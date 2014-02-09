@@ -42,6 +42,7 @@ public class LowFreqOscAndMangling {
         double step, precentOfSample = 1;
 
         for (double i = 0; i < 10; i++) {
+            //could use any function for step
             step = sine(2, 1, 0, 0, i);
             l.add(new SimpleWaveManipulator(
                     "lfowave",
