@@ -6,14 +6,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.io.DataToText;
 import org.soote.cosc.cosc4p98.assignone.io.TextToData;
-import org.soote.cosc.cosc4p98.assignone.util.CustomWave;
-import org.soote.cosc.cosc4p98.assignone.util.CustomWaveHalfPitch;
-import org.soote.cosc.cosc4p98.assignone.util.CustomWaveInterpolation;
+import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWaveHalfPitch;
+import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWaveInterpolation;
 import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
-import org.soote.cosc.cosc4p98.assignone.util.RandomWave;
-import org.soote.cosc.cosc4p98.assignone.util.SawtoothWave;
-import org.soote.cosc.cosc4p98.assignone.util.SineWave;
-import org.soote.cosc.cosc4p98.assignone.util.SquareWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.RandomWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.SawtoothWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.SineWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.SquareWave;
 import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
 /*

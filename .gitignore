@@ -1,2 +1,4 @@
 /dist/
 /music/*
+*.class
+*/*.class

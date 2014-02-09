@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package org.soote.cosc.cosc4p98.assignone.util;
+package org.soote.cosc.cosc4p98.assignone.util.waves;
+
+import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
 /**
  *

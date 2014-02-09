@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import org.soote.cosc.cosc4p98.assignone.io.DataToText;
 import org.soote.cosc.cosc4p98.assignone.io.TextToData;
-import org.soote.cosc.cosc4p98.assignone.util.CustomWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.CustomWave;
 import org.soote.cosc.cosc4p98.assignone.util.SimpleWaveManipulator;
 
 /**
@@ -44,7 +44,6 @@ public class LowFreqOscAndMangling {
         
         for (double i = 0 ; i <10;i++){
             step = sine(2, 1,0,0,i);
-            System.out.println(step);
             l.add(new SimpleWaveManipulator(
                "lfowave",
                cwave.getData(),
