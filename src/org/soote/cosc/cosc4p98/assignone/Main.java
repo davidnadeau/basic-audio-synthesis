@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.soote.cosc.cosc4p98.assignone;
 
 import java.io.IOException;
@@ -13,6 +12,7 @@ import java.io.IOException;
  * @author soote
  */
 public class Main {
+
     public static void main(String[] args) throws IOException, Exception {
         ////////////////////////////////////
         //Part 1

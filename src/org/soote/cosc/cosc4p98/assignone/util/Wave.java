@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.soote.cosc.cosc4p98.assignone.util;
 
 import java.util.ArrayList;
@@ -14,12 +13,12 @@ import java.util.Arrays;
  * @author soote
  */
 public abstract class Wave {
-    
+
     private int sampleCount,
-                bitsPerSample,
-                channels,
-                sampleRate,
-                frequency;
+            bitsPerSample,
+            channels,
+            sampleRate,
+            frequency;
     private ArrayList<String> data;
     private String name;
 
@@ -33,36 +32,72 @@ public abstract class Wave {
         this.name = n;
         this.addHeaders();
     }
+
     private void addHeaders() {
         String[] headers = {
-            "SAMPLES:\t"+this.sampleCount,
-            "BITSPERSAMPLE:\t"+this.bitsPerSample,
-            "CHANNELS:\t"+this.channels,
-            "SAMPLERATE:\t"+this.sampleRate,
+            "SAMPLES:\t" + this.sampleCount,
+            "BITSPERSAMPLE:\t" + this.bitsPerSample,
+            "CHANNELS:\t" + this.channels,
+            "SAMPLERATE:\t" + this.sampleRate,
             "NORMALIZED:\tFALSE"
         };
         data.addAll(Arrays.asList(headers));
     }
+
     public void stripHeader() {
         for (int i = 0; i < 5; i++) {
             this.data.remove(0);
         }
     }
+
     public String interpolate(String a, String b) {
-        return Integer.toString((int)((Integer.parseInt(a)-(Integer.parseInt(b) - (Integer.parseInt(a))))*0.5));
+        return Integer.toString((int) ((Integer.parseInt(a) - (Integer.parseInt(b) - (Integer.parseInt(a)))) * 0.5));
     }
-    
-    public void synthesize() {}
-    public String getType() { return "defualt"; }
-    public void setFrequency(int f) { this.frequency = f; }
-    public void addSample(String s) { this.data.add(s); }
-    
-    public int getSampleCount() { return sampleCount; }
-    public int getBitsPerSample() { return bitsPerSample; } 
-    public int getNumChannels() { return channels; } 
-    public int getSampleRate() { return sampleRate; } 
-    public int getFrequency() { return frequency; } 
-    public ArrayList<String> getSamples() { return data; } 
-    public String getName() { return name; } 
-    public ArrayList<String> getData() { return data; } 
+
+    public void synthesize() {
+    }
+
+    public String getType() {
+        return "defualt";
+    }
+
+    public void setFrequency(int f) {
+        this.frequency = f;
+    }
+
+    public void addSample(String s) {
+        this.data.add(s);
+    }
+
+    public int getSampleCount() {
+        return sampleCount;
+    }
+
+    public int getBitsPerSample() {
+        return bitsPerSample;
+    }
+
+    public int getNumChannels() {
+        return channels;
+    }
+
+    public int getSampleRate() {
+        return sampleRate;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public ArrayList<String> getSamples() {
+        return data;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getData() {
+        return data;
+    }
 }
