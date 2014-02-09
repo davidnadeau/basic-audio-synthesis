@@ -13,11 +13,11 @@ import java.io.IOException;
  * @author soote
  */
 public class IntoToDigital {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
         ////////////////////////////////////
         //Part 1
         ////////////////////////////////////
-       new SampAndSynth();
+//       new SampAndSynth();
         ////////////////////////////////////
         //Part 2
         ////////////////////////////////////

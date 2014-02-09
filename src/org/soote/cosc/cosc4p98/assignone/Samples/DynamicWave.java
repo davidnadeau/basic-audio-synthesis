@@ -7,7 +7,9 @@
 package org.soote.cosc.cosc4p98.assignone.Samples;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.concurrent.Callable;
 
 /**
  *
@@ -39,25 +41,36 @@ public class DynamicWave extends Wave{
     
     public void synthesize() {
         String row;
-        for (double i = 0; i < this.duration; i+=this.phase) {
-            String[] sFloor = this.samples.get((int)(Math.floor(i) % this.samples.size())).split("\t", -1),
-                         sCeil = this.samples.get((int)(Math.ceil(i) % this.samples.size())).split("\t", -1);
 
-            String[] averages = {
-                avg(sFloor[0],sCeil[0]),
-                avg(sFloor[1],sCeil[1])
-            };
+        for (double i = 0; i < this.duration; i+=this.phase) {
+
+            int i1 = (int)(Math.floor(i) % this.samples.size()),
+                  i2 = (int)(Math.ceil(i) % this.samples.size());
+             
+            String[] sFloor = this.samples.get(circularIndex(i1)).split("\t", -1),
+                         sCeil = this.samples.get(circularIndex(i2)).split("\t", -1);
             
-            row =  averages[0]+"\t"+averages[1];
+            String[] values = {
+                interpolate(sFloor[0],sCeil[0]),
+                interpolate(sFloor[1],sCeil[1])
+            };
+            row =  values[0]+"\t"+values[1];
             super.addSample(row);
+            
+            //if we're going in reverse, for will never terminate
+            if (i<=0-this.duration) break;
         }
     }
     
-    private String avg(String a, String b) {
-        return Integer.toString((Integer.parseInt(a)+Integer.parseInt(b))/2);
+    private String interpolate(String a, String b) {
+        return Integer.toString((int)((Integer.parseInt(a)-(Integer.parseInt(b) - (Integer.parseInt(a))))*0.5));
     }
     
-    public static DynamicWave concatenateWaves(LinkedList<DynamicWave> ll) {
+    private int circularIndex(int i) {
+        return i < 0 ? this.samples.size() + i : i;
+    }
+    
+    public static DynamicWave concatenateWaves(LinkedList<DynamicWave> ll, String fileName) {
         ArrayList<String> l = new ArrayList();
         ArrayList<String> al;
         int index;
@@ -71,6 +84,6 @@ public class DynamicWave extends Wave{
             }
         }
         
-        return new DynamicWave("dynamic",l,0.0,l.size());
+        return new DynamicWave(fileName,l,0.0,l.size());
     }
 }

@@ -157,11 +157,9 @@ public class SampAndSynth {
             w.synthesize();
          }
 
-         DynamicWave dwave = DynamicWave.concatenateWaves(semitones);
+         DynamicWave dwave = DynamicWave.concatenateWaves(semitones,"semitones");
          dwave.loadSamples();
-         DataToText.writeTxt(dwave);
-	
-	
+         DataToText.writeTxt(dwave);	
     }
 
 
