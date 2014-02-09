@@ -5,12 +5,12 @@
  */
 package org.soote.cosc.cosc4p98.assignone;
 
-import org.soote.cosc.cosc4p98.assignone.util.waves.ReverbWave;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.soote.cosc.cosc4p98.assignone.io.DataToText;
 import org.soote.cosc.cosc4p98.assignone.io.TextToData;
 import org.soote.cosc.cosc4p98.assignone.util.waves.EchoWave;
+import org.soote.cosc.cosc4p98.assignone.util.waves.ReverbWave;
 
 /**
  *
@@ -21,9 +21,11 @@ public class DSP {
     private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
 
     public DSP() throws IOException {
+        //load samples into a list
         ArrayList<String> customSample = TextToData.readTxt(FILEPATH + "gipsy.kings.hotel.california.txt");
         int[] headers = TextToData.parseHeader(customSample);
 
+        //remove headers
         for (int i = 0; i < 5; i++) {
             customSample.remove(0);
         }
@@ -38,7 +40,8 @@ public class DSP {
                 customSample, //samples for custom clip
                 "reverb"); //fileName
 
-        rwave.synthesize(1000, 0.6); //(delay,volume)
+        //delay must be < 1300
+        rwave.synthesize(1300, 0.7, 3); //(delay,volume,depth)
         DataToText.writeTxt(rwave);
 
         //Echo Effect
@@ -51,7 +54,8 @@ public class DSP {
                 customSample, //samples for custom clip
                 "echo"); //fileName
 
-        ewave.synthesize(5000, 0.6); //(delay,volume)
+        //delay myst be > 1300
+        ewave.synthesize(5000, 0.7, 3); //(delay,volume,depth)
         DataToText.writeTxt(ewave);
 
     }

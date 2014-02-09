@@ -28,6 +28,11 @@ public class SampAndSynth {
 
     private static final String FILEPATH = "/home/soote/documents/school/4p98/AssignOne/music/";
 
+    /**
+     * Create all the samples for part 1a.
+     *
+     * @throws IOException
+     */
     public SampAndSynth() throws IOException {
         LinkedList<Wave> waves = new LinkedList();
 
