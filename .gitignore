@@ -2,3 +2,5 @@
 /music/*
 *.class
 */*.class
+*.properties
+*/*.properties
