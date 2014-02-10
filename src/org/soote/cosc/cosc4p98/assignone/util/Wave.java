@@ -70,8 +70,8 @@ public abstract class Wave {
 
     //change amplitude of sample to reside in acceptable range
     public int normalize(int min, int max, int i) {
-        double minPossible = -32768 + 1;
-        double maxPossible = 32768 - 1;
+        double minPossible = 0 - Math.pow(2, 15);
+        double maxPossible = Math.pow(2, 15) - 1;
         double half = (max - min) / 2;
 
         double f1 = (double) (i - min) / (max - min);
