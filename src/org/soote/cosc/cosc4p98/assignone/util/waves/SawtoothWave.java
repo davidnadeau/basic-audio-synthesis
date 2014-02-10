@@ -14,6 +14,7 @@ public class SawtoothWave extends Wave {
         super(sc, bps, c, sr, f, n);
     }
 
+    @Override
     public void synthesize() {
         double sample = -1,
                 period = (super.getFrequency() * 2.) / super.getSampleRate();
@@ -27,4 +28,5 @@ public class SawtoothWave extends Wave {
             }
         }
     }
+
 }

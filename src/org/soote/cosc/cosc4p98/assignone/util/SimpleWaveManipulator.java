@@ -2,6 +2,7 @@ package org.soote.cosc.cosc4p98.assignone.util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -9,11 +10,11 @@ import java.util.LinkedList;
  */
 public class SimpleWaveManipulator extends Wave {
 
-    private double phase;
-    private int duration;
-    private ArrayList<String> samples;
+    private final double phase;
+    private final int duration;
+    private final List<String> samples;
 
-    public SimpleWaveManipulator(String n, ArrayList<String> s, double p, int d) {
+    public SimpleWaveManipulator(String n, List<String> s, double p, int d) {
         super(d, 16, 2, 44100, 440, n);
         this.samples = s;
         this.phase = p;
@@ -35,6 +36,7 @@ public class SimpleWaveManipulator extends Wave {
         }
     }
 
+    @Override
     public void synthesize() {
         String[] sFloor, sCeil, interpolated = new String[2];
         String row;
@@ -68,7 +70,7 @@ public class SimpleWaveManipulator extends Wave {
     public static SimpleWaveManipulator concatenateWaves(
             LinkedList<SimpleWaveManipulator> ll, String fileName) {
         ArrayList<String> l = new ArrayList();
-        ArrayList<String> al;
+        List<String> al;
         int index;
         for (Wave w : ll) {
             w.stripHeader();
@@ -82,4 +84,5 @@ public class SimpleWaveManipulator extends Wave {
 
         return new SimpleWaveManipulator(fileName, l, 0.0, l.size());
     }
+
 }

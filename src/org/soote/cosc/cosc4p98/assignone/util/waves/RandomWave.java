@@ -14,6 +14,7 @@ public class RandomWave extends Wave {
         super(sc, bps, c, sr, f, n);
     }
 
+    @Override
     public void synthesize() {
         int sample;
         for (int i = 1; i <= this.getSampleCount(); i++) {
@@ -21,4 +22,5 @@ public class RandomWave extends Wave {
             this.addSample(sample + "\t" + sample);
         }
     }
+
 }

@@ -14,15 +14,18 @@ public class Main {
         //@purpose: create some waves
         ////////////////////////////////////
         new SampAndSynth();
+
         ////////////////////////////////////
         //Part 2
         //@purpose: run oscilator over a sample
         ////////////////////////////////////
         new LowFreqOscAndMangling();
+
         ////////////////////////////////////
         //Part 3
         //@purpose: run reverb and echo over a sample
         ////////////////////////////////////
         new DSP();
     }
+
 }

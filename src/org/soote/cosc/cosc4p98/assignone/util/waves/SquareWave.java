@@ -12,6 +12,7 @@ public class SquareWave extends Wave {
         super(sc, bps, c, sr, f, n);
     }
 
+    @Override
     public void synthesize() {
         int sample;
         for (int i = 1; i <= super.getSampleCount(); i++) {
@@ -19,4 +20,5 @@ public class SquareWave extends Wave {
             super.addSample(sample + "\t" + sample);
         }
     }
+
 }

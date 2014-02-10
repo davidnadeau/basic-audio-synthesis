@@ -9,8 +9,8 @@ import org.soote.cosc.cosc4p98.assignone.util.Wave;
  */
 public class EchoWave extends Wave {
 
-    private ArrayList<String> samples;
-    private int[] maximums;
+    private final ArrayList<String> samples;
+    private final int[] maximums;
 
     public EchoWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l,
             String n) {
@@ -19,6 +19,11 @@ public class EchoWave extends Wave {
 
         //get the smallest and largest samples
         maximums = super.findGlobalMaximums(this.samples);
+    }
+
+    @Override
+    public void synthesize() {
+        synthesize(2000, 0.8, 2);
     }
 
     public void synthesize(int delay, double volume, int depth) throws
@@ -78,7 +83,8 @@ public class EchoWave extends Wave {
                     break;
                 }
             }
-            super.addSample((int) c1 + "\t" + (int) c2);
+            super.addSample(c1 + "\t" + c2);
         }
     }
+
 }

@@ -62,8 +62,9 @@ public class LowFreqOscAndMangling {
 
     }
 
-    public double sine(double amplitude, int frequency, double phase,
+    private double sine(double amplitude, int frequency, double phase,
             double displacement, double i) {
         return amplitude * Math.sin(frequency * (i - phase)) + displacement;
     }
+
 }

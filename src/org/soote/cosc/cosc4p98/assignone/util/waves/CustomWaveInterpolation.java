@@ -9,7 +9,7 @@ import org.soote.cosc.cosc4p98.assignone.util.Wave;
  */
 public class CustomWaveInterpolation extends Wave {
 
-    private ArrayList<String> samples;
+    private final ArrayList<String> samples;
 
     public CustomWaveInterpolation(int sc, int bps, int c, int sr, int f,
             ArrayList<String> l, String n) {
@@ -17,6 +17,7 @@ public class CustomWaveInterpolation extends Wave {
         this.samples = l;
     }
 
+    @Override
     public void synthesize() {
         String[] sFloor, sCeil, interpolated = new String[2];
         String row;
@@ -49,4 +50,5 @@ public class CustomWaveInterpolation extends Wave {
     private int circularIndex(int i) {
         return i < 0 ? this.samples.size() + i : i;
     }
+
 }

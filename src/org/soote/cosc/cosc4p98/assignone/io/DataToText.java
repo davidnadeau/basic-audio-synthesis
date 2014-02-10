@@ -3,7 +3,7 @@ package org.soote.cosc.cosc4p98.assignone.io;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import org.soote.cosc.cosc4p98.assignone.util.Wave;
 
 /**
@@ -13,7 +13,7 @@ import org.soote.cosc.cosc4p98.assignone.util.Wave;
 public class DataToText {
 
     public static void writeTxt(Wave w) {
-        ArrayList<String> l = w.getData();
+        List<String> l = w.getData();
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("music/" + w
                     .getName() + ".txt"));
@@ -25,4 +25,5 @@ public class DataToText {
         } catch (IOException e) {
         }
     }
+
 }

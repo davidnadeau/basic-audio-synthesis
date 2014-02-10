@@ -9,8 +9,8 @@ import org.soote.cosc.cosc4p98.assignone.util.Wave;
  */
 public class ReverbWave extends Wave {
 
-    private ArrayList<String> samples;
-    private int[] maximums;
+    private final ArrayList<String> samples;
+    private final int[] maximums;
 
     public ReverbWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l,
             String n) {
@@ -19,6 +19,11 @@ public class ReverbWave extends Wave {
 
         //get the smallest and the largest samples
         maximums = super.findGlobalMaximums(this.samples);
+    }
+
+    @Override
+    public void synthesize() {
+        synthesize(500, 0.8);
     }
 
     public void synthesize(int delay, double volume) throws
@@ -69,8 +74,9 @@ public class ReverbWave extends Wave {
                 c2 = super.normalize(maximums[0], maximums[1],
                         c2 + c2reverb);
             }
-            super.addSample((int) c1 + "\t" + (int) c2);
+            super.addSample(c1 + "\t" + c2);
         }
 
     }
+
 }

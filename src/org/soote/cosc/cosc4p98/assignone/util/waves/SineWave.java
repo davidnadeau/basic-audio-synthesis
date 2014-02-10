@@ -14,6 +14,7 @@ public class SineWave extends Wave {
         super(sc, bps, c, sr, f, n);
     }
 
+    @Override
     public void synthesize() {
         int sample;
         for (int i = 0; i < super.getSampleCount(); i++) {
@@ -22,4 +23,5 @@ public class SineWave extends Wave {
             super.addSample(sample + "\t" + sample);
         }
     }
+
 }

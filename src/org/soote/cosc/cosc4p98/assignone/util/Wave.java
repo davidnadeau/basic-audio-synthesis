@@ -2,6 +2,8 @@ package org.soote.cosc.cosc4p98.assignone.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -9,13 +11,13 @@ import java.util.Arrays;
  */
 public abstract class Wave {
 
-    private int sampleCount,
+    private final int sampleCount,
             bitsPerSample,
             channels,
             sampleRate,
             frequency;
-    private ArrayList<String> data;
-    private String name;
+    private final List<String> data;
+    private final String name;
 
     public Wave(int sc, int bps, int c, int sr, int f, String n) {
         data = new ArrayList();
@@ -36,7 +38,7 @@ public abstract class Wave {
             "SAMPLERATE:\t" + this.sampleRate,
             "NORMALIZED:\tFALSE"
         };
-        data.addAll(Arrays.asList(headers));
+        this.data.addAll(Arrays.asList(headers));
     }
 
     public void stripHeader() {
@@ -79,6 +81,11 @@ public abstract class Wave {
                 : 2 * maxPossible * ((half * (f1 - 0.5)) / half));
     }
 
+    //return immutable sample table
+    public List<String> getData() {
+        return Collections.unmodifiableList(this.data);
+    }
+
     //waves will override this method
     public void synthesize() {
     }
@@ -87,43 +94,32 @@ public abstract class Wave {
         return "defualt";
     }
 
-    public void setFrequency(int f) {
-        this.frequency = f;
-    }
-
     public void addSample(String s) {
         this.data.add(s);
     }
 
     public int getSampleCount() {
-        return sampleCount;
+        return this.sampleCount;
     }
 
     public int getBitsPerSample() {
-        return bitsPerSample;
+        return this.bitsPerSample;
     }
 
     public int getNumChannels() {
-        return channels;
+        return this.channels;
     }
 
     public int getSampleRate() {
-        return sampleRate;
+        return this.sampleRate;
     }
 
     public int getFrequency() {
-        return frequency;
-    }
-
-    public ArrayList<String> getSamples() {
-        return data;
+        return this.frequency;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public ArrayList<String> getData() {
-        return data;
-    }
 }

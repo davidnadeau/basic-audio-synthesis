@@ -9,7 +9,7 @@ import org.soote.cosc.cosc4p98.assignone.util.Wave;
  */
 public class CustomWave extends Wave {
 
-    private ArrayList<String> samples;
+    private final ArrayList<String> samples;
 
     public CustomWave(int sc, int bps, int c, int sr, int f, ArrayList<String> l,
             String n) {
@@ -17,6 +17,7 @@ public class CustomWave extends Wave {
         this.samples = l;
     }
 
+    @Override
     public void synthesize() {
         String row;
         int s1, s2;
@@ -29,4 +30,5 @@ public class CustomWave extends Wave {
         }
 
     }
+
 }
